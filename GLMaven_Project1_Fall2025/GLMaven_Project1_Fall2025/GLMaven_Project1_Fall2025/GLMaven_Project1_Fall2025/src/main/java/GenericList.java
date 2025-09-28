@@ -1,4 +1,12 @@
-public abstract class GenericList<T> {
+import java.util.ArrayList;
+import java.util.Iterator;
+
+
+//The Project description says GenericList<T> should implement Iterable interface.
+public abstract class GenericList<T> implements Iterable<T>{
+	
+	private Node<T> Head;
+	private int length = 0;
 	
 	public static class Node<T> {
 		private T data;
@@ -12,9 +20,6 @@ public abstract class GenericList<T> {
 		}
 		
 	}
-	
-	private Node<T> Head;
-	private int length = 0;
 	
 	
 	// Prints out item list, one by one. 
@@ -83,25 +88,22 @@ public abstract class GenericList<T> {
 		}
 	}
 	
-	/*public ArrayList<T> dumpList() {
+	// After ArrayList is imported from the java library, we can
+	// work on dumping the contents of our LL into dumpList()
+	// Disregard the warning for unchecked cast, Head is guaranteed to be of type <T>
+	public ArrayList<T> dumpList() {
 		
-		if (Head == null) {
-			System.out.print("[]");
+		ArrayList<T> dump = new ArrayList<>();
+		Node<T> current = Head;
+		
+		for(int i = 0; i <length; i++) {
+			dump.add(current.data);
+			current = current.next;
 		}
-		else {
-			Node<T> current = Head;
-			
-			System.out.print("[");
-			
-			while (current.next != null) {
-				System.out.print(current.data + ", ");
-				
-			}
-			
-			System.out.print(current.data + "]");
-		}
+		
+		return dump;
 
-	}*/
+	}
 	
 	// Returns the item based on index
 	public T get(int index) {
@@ -125,12 +127,14 @@ public abstract class GenericList<T> {
 	}
 	
 	
-	/* public T set(int index, T element) {
+	// Added another condition: If index is LESS than 0 (negative index)
+	// return 0
+	public T set(int index, T element) {
 		Node<T> current = Head;
 		Node<T> temp = null;
 		int counter = 0;
 		
-		if (index >= length) {
+		if (index >= length || index < 0) {
 			return null;
 		}
 		
@@ -147,7 +151,7 @@ public abstract class GenericList<T> {
 		}
 		
 		return null;
-	}*/
+	}
 	
 	// Returns length of the item list
 	public int getLength() {
@@ -169,8 +173,27 @@ public abstract class GenericList<T> {
 		Head.data = data;
 	}
 	
-	/*
+	
 	public Iterator<T> descendingIterator() {
+		ArrayList<T> iteration = new ArrayList<>();
+		Node<T> current = getHead();
+		while (current != null) {
+			iteration.add(current.data);
+			current = current.next;
+		}
 		
-	}*/
+		return new Iterator<T>() {
+			int index  = iteration.size() - 1;
+			
+			public boolean hasNext() {
+				return index >= 0;
+			}
+			public T next() {
+				return iteration.get(index--);
+			}
+			
+		};
+		
+	}
+	
 }
