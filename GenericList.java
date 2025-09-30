@@ -82,6 +82,7 @@ public abstract class GenericList<T> /*implements Iterable<T>*/ {
 		if (Head.next == null) {
 			T temp = Head.data;
 			Head = null;
+			length--;
 			return temp;
 		}
 		
@@ -95,6 +96,7 @@ public abstract class GenericList<T> /*implements Iterable<T>*/ {
 			T temp = current.next.data;
 			current.next = null;
 			
+			length--;
 			return temp;
 		}
 	}
