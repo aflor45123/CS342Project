@@ -6,6 +6,20 @@ public class GenericQueue<T> extends GenericList<T> {
 	
 	private Node<T> tail; 
 	
+	public void add(T data, int code) {
+        Node<T> node = new Node<>(data, code, null); // ctor sets next = null
+
+        // non-empty → walk to tail and link
+        Node<T> current = getHead();
+        while (current.getNext() != null) {
+            current = current.getNext();
+        }
+        current.setNext(node);
+        tail = node;
+
+        setLength(getLength() + 1);
+    }
+
 	// Adds new element to the end of list
 	public void enqueue(T data) {
 		add(data);
