@@ -6,10 +6,11 @@ public class GenericQueue<T> extends GenericList<T> {
 	
 	private Node<T> tail; 
 	
+	//Overloaded constructor for add. It has to be done per guidelines
 	public void add(T data, int code) {
         Node<T> node = new Node<>(data, code, null); // ctor sets next = null
 
-        // non-empty → walk to tail and link
+        
         Node<T> current = getHead();
         while (current.getNext() != null) {
             current = current.getNext();
