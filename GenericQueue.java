@@ -8,7 +8,7 @@ public class GenericQueue<T> extends GenericList<T> {
 	
 	//Overloaded constructor for add. It has to be done per guidelines
 	public void add(T data, int code) {
-        Node<T> node = new Node<>(data, code, null); // ctor sets next = null
+        Node<T> node = new Node<>(data, code, null); // constructor sets next = null
 
         if (getHead() == null) {
             // empty list → make this node the head
@@ -44,13 +44,20 @@ public class GenericQueue<T> extends GenericList<T> {
 	public Node<T> getTail() {
 		Node<T> current = getHead();
 		
+		if (current == null) {
+			return null;
+		}
 		while(current.getNext() != null) {
 			current = current.getNext();
 		}
 		
-		tail = current;
 		
-		return tail;
+		return current;
+	}
+
+	@Override
+	public Iterator<T> iterator() {
+		return null;
 	}
 	
 	

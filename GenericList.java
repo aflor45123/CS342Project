@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 
-public abstract class GenericList<T> /*implements Iterable<T>*/ {
+public abstract class GenericList<T> implements Iterable<T> {
 	
 	private Node<T> Head;
 	private int length = 0;
@@ -135,7 +135,6 @@ public abstract class GenericList<T> /*implements Iterable<T>*/ {
 	// return 0
 	public T set(int index, T element) {
 		Node<T> current = Head;
-		Node<T> temp = null;
 		int counter = 0;
 		
 		if (index >= length || index < 0) {
@@ -144,14 +143,13 @@ public abstract class GenericList<T> /*implements Iterable<T>*/ {
 		
 		while (current != null) {
 			if (index == counter) {
-				temp = current;
+				T tempData = current.data;
 				current.data = element;
-				return temp.data;
+				return tempData;
 			}
 			
-			else {
-				current = current.next;
-			}
+			current = current.next;
+			counter++;
 		}
 		
 		return null;
