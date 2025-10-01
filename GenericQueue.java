@@ -10,6 +10,15 @@ public class GenericQueue<T> extends GenericList<T> {
 	public void add(T data, int code) {
         Node<T> node = new Node<>(data, code, null); // ctor sets next = null
 
+        if (getHead() == null) {
+            // empty list → make this node the head
+            // requires the protected helper inside GenericList
+            setHeadNode(node);
+            setLength(1);
+            tail = node;
+            return;
+        }
+        
         
         Node<T> current = getHead();
         while (current.getNext() != null) {

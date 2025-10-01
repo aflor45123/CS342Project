@@ -1,7 +1,6 @@
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 public class MyHashMap<T> extends GenericList<T> implements Iterable<T>{
 	
@@ -63,6 +62,7 @@ public class MyHashMap<T> extends GenericList<T> implements Iterable<T>{
 				Node<T> temp = queue.get(i);
 				if(temp.key.equals(key) && temp.code == code) {
 					temp.value = value;
+					update = true;
 				}
 			}
 			if (!update) {
@@ -121,14 +121,12 @@ public class MyHashMap<T> extends GenericList<T> implements Iterable<T>{
 
 			@Override
 			public boolean hasNext() {
-				// TODO Auto-generated method stub
 				advanceQueue();
 				return queueIter != null && queueIter.hasNext();
 			}
 
 			@Override
 			public T next() {
-				// TODO Auto-generated method stub
 				advanceQueue();
 				return queueIter.next().value;
 			}

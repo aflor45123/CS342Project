@@ -71,6 +71,12 @@ public abstract class GenericList<T> /*implements Iterable<T>*/ {
 		
 		length++;
 	}
+	protected void setHeadNode(Node<T> node) {
+		this.Head = node;   // <-- actually set the head reference
+	    this.length = 1;
+	   
+	}
+
 	
 	// Deletes the last node in the list
 	// If empty, returns null
