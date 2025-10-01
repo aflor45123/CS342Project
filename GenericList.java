@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 
-public abstract class GenericList<T> /*implements Iterable<T>*/ {
+public abstract class GenericList<T> implements Iterable<T> {
 	
 	private Node<T> Head;
 	private int length = 0;
@@ -71,40 +71,19 @@ public abstract class GenericList<T> /*implements Iterable<T>*/ {
 		
 		length++;
 	}
-	protected void setHeadNode(Node<T> node) {
-		this.Head = node;   // <-- actually set the head reference
-	    this.length = 1;
-	   
-	}
-
 	
-	// Deletes the last node in the list
+	// Deletes the first node in the list
 	// If empty, returns null
 	public T delete() {
 		if (Head == null) {
 			return null;
 		}
 		
-		if (Head.next == null) {
-			T temp = Head.data;
-			Head = null;
-			length--;
-			return temp;
-		}
+		T temp = Head.data;
+		Head = Head.next;
+		length--;
 		
-		else {
-			Node<T> current = Head;
-			
-			while (current.next.next != null) {
-				current = current.next;
-			}
-			
-			T temp = current.next.data;
-			current.next = null;
-			
-			length--;
-			return temp;
-		}
+		return temp;
 	}
 	
 	// After ArrayList is imported from the java library, we can
