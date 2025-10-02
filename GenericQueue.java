@@ -30,9 +30,14 @@ public class GenericQueue<T> extends GenericList<T> {
         setLength(getLength() + 1);
     }
 
-	// Adds new element to the end of list
+	// Adds new element to the end of queue (data)
 	public void enqueue(T data) {
 		add(data);
+	}
+	
+	// Adds new element to the end of queue (data, code)
+	public void enqueue(T data, int code) {
+		add(data, code);
 	}
 	
 	// Deletes element from the end of list
@@ -54,6 +59,7 @@ public class GenericQueue<T> extends GenericList<T> {
 		
 		return current;
 	}
+	
 
 	@Override
 	public Iterator<T> iterator() {

@@ -1,18 +1,12 @@
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.Iterator;
-
-
-//import org.junit.jupiter.api.BeforeAll;
-//import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.params.ParameterizedTest;
-//import org.junit.jupiter.params.provider.ValueSource;
 
 
 public class GQTest {
 	
-	// Test 1: Adding elements to a queue (enqueue method)
+	// Test 1: Adding elements to a queue (enqueue method) [Tests 1 argument: data]
 	@Test
 	void addElementTypeString() {
 		ArrayList<String> solution = new ArrayList<>();
@@ -31,7 +25,7 @@ public class GQTest {
 		for (int i = 0; i < length; ++i) {
 			assertEquals(solution.get(i), testQueue.get(i), testQueue.get(i) + " does not match " + solution.get(i));
 		}
-	}
+	}	
 	
 	
 	// Test 2: Adding elements to a queue (enqueue method)
@@ -55,7 +49,7 @@ public class GQTest {
 			assertEquals(testQueue.get(i), solution.get(i), testQueue.get(i) + " does not match " + solution.get(i));
 		}
 	}
-	
+
 	
 	// Test 3: Deleting elements from a queue (delete method)
 	@Test
@@ -175,17 +169,14 @@ public class GQTest {
 		
 		
 		assertEquals(tempNodeA.getNext().getData(), "Van");
-		//assertEquals(tempNodeA.getNext().GetCode(), "Van");
-		
-		
 	}
+	
 	
 	// Test 10: Setting contents for code and next (Node method)
 	@Test
 	void DefaultNode() {		
 		GenericQueue.Node<String> tempNode = new GenericQueue.Node<>("Spring", 5, null);
 		assertEquals(tempNode.getData(), "Spring", tempNode.getData() + " should be Spring");
-		
 	}
 	
 	
@@ -209,6 +200,7 @@ public class GQTest {
 			assertEquals(newList.get(i), solution.get(i), newList.get(i) + " should be " + solution.get(i));
 		}
 	}
+	
 	
 	// Test 12: Returns node data based on index (get method)
 	@Test
@@ -314,6 +306,20 @@ public class GQTest {
 			assertEquals(temp, solution.get(counter), temp + " does not match " + solution.get(counter));
 			++counter;
 		}
+	}
+	
+	
+	// Test 18: Adding elements to a queue (enqueue method) [Tests 2 arguments: data, code]
+	@Test
+	void AddElementStringTwoParams() {
+		GenericQueue<String> testQueue = new GenericQueue<String>();
+		testQueue.enqueue("Pie", 3);
+		testQueue.enqueue("Icecream", 5);
+		
+		assertEquals(testQueue.get(0), "Pie", testQueue.get(0) + " does not match Pie");
+		assertEquals(testQueue.getCode(0), 3, testQueue.getCode(0) + " does not match 3");
+		assertEquals(testQueue.get(1), "Icecream", testQueue.get(1) + " does not match Icecream");
+		assertEquals(testQueue.getCode(1), 5, testQueue.getCode(1) + " does not match 5");
 	}
 	
 }
